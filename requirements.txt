@@ -1,0 +1,5 @@
+click
+more_itertools
+pytest
+rubik-cube
+Pillow
