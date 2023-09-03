@@ -104,7 +104,8 @@ class TestRealOldPochmannSolver:
         return make_white_up_green_front_cube()
 
     @pytest.mark.parametrize(
-        "edge_swap_letters, corner_swap_letters, corners_first, apply_parity, expected_cube_flat_str",
+        "edge_swap_letters, corner_swap_letters, "
+        "corners_first, apply_parity, expected_cube_flat_str",
         [
             pytest.param(
                 "D",

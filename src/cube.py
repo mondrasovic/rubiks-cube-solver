@@ -82,7 +82,7 @@ class Cube:
             faces_piece_colors[face_index].append(
                 [Color.from_string(color_str) for color_str in row_colors_str]
             )
-        
+
         for piece_colors in faces_piece_colors:
             yield Face(piece_colors)
 

@@ -1,5 +1,9 @@
+Pillow
+black
 click
+flake8
+isort
 more_itertools
+pre-commit
 pytest
 rubik-cube
-Pillow

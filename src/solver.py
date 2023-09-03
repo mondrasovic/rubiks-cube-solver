@@ -18,8 +18,12 @@ class SetupMove:
         def count_moves(moves: str) -> int:
             return len(moves.strip().split())
 
-        if count_moves(self.moves) != count_moves(self.inverse_moves):
-            raise ValueError(f"no. of moves does not equal the no. of inverse moves")
+        n_moves = count_moves(self.moves)
+        n_inverse_moves = count_moves(self.inverse_moves)
+        if n_moves != n_inverse_moves:
+            raise ValueError(
+                f"no. of moves {n_moves} does not equal the no. of inverse moves {n_inverse_moves}"
+            )
 
 
 EDGE_SWAP_MOVES = "R U Ri Ui Ri F R R Ui Ri Ui R U Ri Fi"

@@ -3,8 +3,8 @@ from __future__ import annotations
 import click
 
 from cube import make_white_up_green_front_cube
-from solver import OldPochmannSolver
 from renderer import CubeRenderer
+from solver import OldPochmannSolver
 
 
 @click.command()
@@ -57,7 +57,7 @@ def main(
     if reverse_swap_letters:
         edge_swap_letters = reverse_str(edge_swap_letters)
         corner_swap_letters = reverse_str(corner_swap_letters)
-    
+
     solver.solve(cube, edge_swap_letters, corner_swap_letters, corners_first, apply_parity)
     cube_image = renderer.render(cube)
 
