@@ -1,8 +1,6 @@
 name: Python - Code Style Check and Test
 
-on:
-  pull_request:
-    branches: [master]
+on: push
 
 jobs:
   code-style-check-and-test:
