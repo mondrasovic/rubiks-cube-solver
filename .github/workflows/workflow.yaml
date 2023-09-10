@@ -1,35 +1,32 @@
-name: Python Code Style Check
+name: Python - Code Style Check and Test
 
-on: push
+on:
+  pull_request:
+    branches: [master]
 
 jobs:
-  lint-and-format:
+  code-style-check-and-test:
     runs-on: ubuntu-latest
-    
+    strategy:
+      matrix:
+        python-version: [3.10]
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.10
-    
-    - name: Install dependencies
-      run: |
-        pip install black flake8
-      # Cache dependencies for faster workflow runs
-      # See https://github.com/actions/cache for more info
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/*.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    
-    - name: Run black
-      run: black --check --line-length=100 .
-      
-    - name: Run flake8
-      run: flake8 --check --line-length=100 .
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip" # Caching pip dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f ./requirements.txt ]; then pip install -r ./requirements.txt; fi
+      - name: Check code style
+        run: |
+          isort --check --line-length 100 .
+          black --check --line-length 100 .
+      - name: Test code
+        run: |
+          pytest . -rf -vv
+          
